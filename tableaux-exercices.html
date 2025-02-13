@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices Tableaux HTML</title>
+    <link rel="stylesheet" href="style/tableaux.css">
+</head>
+<body>
+    <h1>Exercice 1 : Calendrier Scolaire</h1>
+    <table class="calendrier">
+        <tr>
+            <th>Zone</th>
+            <th>Toussaint</th>
+            <th>Noël</th>
+            <th>Hiver</th>
+            <th>Printemps</th>
+            <th>Été</th>
+        </tr>
+        <tr>
+            <td>Zone A</td>
+            <td rowspan="3">Du 21 octobre au 6 novembre 2023</td>
+            <td rowspan="3">Du 23 décembre 2023 au 8 janvier 2024</td>
+            <td>Du 17 février au 4 mars 2024</td>
+            <td>Du 13 au 29 avril 2024</td>
+            <td rowspan="3">Du 6 juillet au 2 septembre 2024</td>
+        </tr>
+        <tr>
+            <td>Zone B</td>
+            <td>Du 24 février au 11 mars 2024</td>
+            <td>Du 20 avril au 6 mai 2024</td>
+        </tr>
+        <tr>
+            <td>Zone C</td>
+            <td>Du 10 au 26 février 2024</td>
+            <td>Du 6 au 22 avril 2024</td>
+        </tr>
+    </table>
+
+    <h1>Exercice 2 : Langages de Script</h1>
+    <table class="langages">
+        <caption>Comparaison des langages de script côté serveur</caption>
+        <tr>
+            <th>Logo</th>
+            <th>Nom abrégé</th>
+            <th>Nom complet</th>
+            <th>Année de sortie</th>
+            <th>Site web de référence</th>
+            <th>Exemple de code</th>
+        </tr>
+        <tr>
+            <td><a href="images/php.png" title="Logo PHP"><img src="images/php-small.png" alt="PHP"></a></td>
+            <td>PHP</td>
+            <td>PHP: Hypertext Preprocessor</td>
+            <td>1995</td>
+            <td><a href="https://www.php.net" title="Site officiel PHP">php.net</a></td>
+            <td><code>echo "Hello World!";</code></td>
+        </tr>
+        <!-- Ajoutez d'autres langages de la même manière -->
+    </table>
+
+    <h1>Exercice 3 : Calendrier Avril 2024</h1>
+    <table class="mois">
+        <caption>Avril 2024</caption>
+        <tr>
+            <th>Lun</th>
+            <th>Mar</th>
+            <th>Mer</th>
+            <th>Jeu</th>
+            <th>Ven</th>
+            <th>Sam</th>
+            <th>Dim</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+        <!-- Continuez pour les autres semaines -->
+    </table>
+</body>
+</html>

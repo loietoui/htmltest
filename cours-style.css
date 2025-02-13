@@ -1,0 +1,79 @@
+/* Style général */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #2196F3;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Style des cartes technologies */
+.technologies {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.tech-card {
+    text-align: center;
+    cursor: pointer;
+}
+
+.tech-card img {
+    width: 150px;
+    height: 150px;
+    transition: transform 0.3s;
+}
+
+.tech-card img:hover {
+    transform: scale(1.1);
+}
+
+/* Style du sommaire */
+.sommaire {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.sommaire ol {
+    margin-left: 2rem;
+}
+
+.sommaire a {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+.sommaire a:hover {
+    text-decoration: underline;
+}
+
+/* Style du footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: white;
+}
