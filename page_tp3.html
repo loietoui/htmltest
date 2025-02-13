@@ -4,12 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sommaire TP3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
     <h1>Sommaire TP3</h1>
-        <h2>choisissez où vous voulez naviguer</h2>
-    <button onclick="window.location.href = 'cours.html';">Exercice 2 : Cours SQL</button>
-    <button onclick="window.location.href = 'cv.html';">Exercice 3 : CV</button>
+    <h2>Choisissez où vous voulez naviguer</h2>
+    <div class="button-group">
+        <button onclick="window.location.href = 'cours.html';">Exercice 2 : Cours SQL</button>
+        <button onclick="window.location.href = 'cv.html';">Exercice 3 : CV</button>
+        <button onclick="window.location.href = 'memory/index.html';">Exercice 4 : Memory Game</button>
+        <button onclick="window.location.href = 'cours-web/index.html';">Exercice 5 : Site de Cours</button>
+        <button onclick="window.location.href = 'tableaux/index.html';">Exercice 6 : Tableaux HTML</button>
+    </div>
     <h3>lilian georges</h3>
 </body>
 </html>
