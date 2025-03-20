@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devis Dalle Béton</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #218838;
+        }
+        .devis-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .devis-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .devis-container table, th, td {
+            border: 1px solid #ccc;
+        }
+        .devis-container th, .devis-container td {
+            padding: 8px;
+            text-align: center;
+        }
+        .devis-container .total {
+            font-weight: bold;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Calculer le Devis pour une Dalle Béton</h2>
+        <form id="devisForm">
+            <label for="surface">Surface de l'habitation (m²):</label>
+            <input type="number" id="surface" required min="1" step="0.01">
+
+            <label for="epaisseur">Épaisseur de la dalle (cm) (min: 15, max: 35):</label>
+            <input type="number" id="epaisseur" required min="15" max="35" step="1">
+
+            <button type="submit">Obtenir le Devis</button>
+        </form>
+    </div>
+
+    <div class="devis-container" id="devisContainer">
+        <h2>Devis</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Prix (€)</th>
+                    <th>Quantité</th>
+                    <th>Total (€)</th>
+                </tr>
+            </thead>
+            <tbody id="devisBody">
+                <!-- Les valeurs seront générées ici -->
+            </tbody>
+        </table>
+        <p><strong>Sous-total :</strong> <span id="sousTotal">0</span> €</p>
+        <p><strong>TVA (20%) :</strong> <span id="tva">0</span> €</p>
+        <p><strong>Total TTC :</strong> <span id="totalTTC">0</span> €</p>
+    </div>
+
+    <script>
+        document.getElementById('devisForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const surface = parseFloat(document.getElementById('surface').value);
+            const epaisseur = parseFloat(document.getElementById('epaisseur').value);
+
+            if (isNaN(surface) || isNaN(epaisseur) || epaisseur < 15 || epaisseur > 35) {
+                alert("Veuillez saisir des valeurs valides.");
+                return;
+            }
+
+            const volume = (surface * (epaisseur / 100)).toFixed(2); // Volume en m³
+            const cimentTonnage = (volume * 0.35).toFixed(2); // Tonnage de ciment (350 kg/m³)
+            const camions = Math.ceil(volume / 9); // Arrondi au camion supérieur
+
+            const prixBeton = volume * 91; // Prix du béton
+            const prixTransport = camions * 140; // Prix du transport
+            const sousTotal = prixBeton + prixTransport;
+            const tva = sousTotal * 0.2; // TVA 20%
+            const totalTTC = sousTotal + tva;
+
+            // Mise à jour du tableau
+            const devisBody = document.getElementById('devisBody');
+            devisBody.innerHTML = `
+                <tr>
+                    <td>Volume de béton (m³)</td>
+                    <td>91</td>
+                    <td>${volume}</td>
+                    <td>${prixBeton.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <td>Transport (camions)</td>
+                    <td>140</td>
+                    <td>${camions}</td>
+                    <td>${prixTransport.toFixed(2)}</td>
+                </tr>
+            `;
+
+            // Mise à jour des totaux
+            document.getElementById('sousTotal').textContent = sousTotal.toFixed(2);
+            document.getElementById('tva').textContent = tva.toFixed(2);
+            document.getElementById('totalTTC').textContent = totalTTC.toFixed(2);
+
+            // Affichage du devis
+            document.getElementById('devisContainer').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
