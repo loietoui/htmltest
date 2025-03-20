@@ -3,87 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercices Tableaux HTML</title>
-    <link rel="stylesheet" href="style/tableaux.css">
+    <title>TP6 - Tableaux et Calendrier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        caption {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Exercice 1 : Calendrier Scolaire</h1>
-    <table class="calendrier">
+
+    <!-- Exercice 1 -->
+    <h2>Exercice 1 : Tableau Simple</h2>
+    <table>
         <tr>
-            <th>Zone</th>
-            <th>Toussaint</th>
-            <th>Noël</th>
-            <th>Hiver</th>
-            <th>Printemps</th>
-            <th>Été</th>
+            <th>Colonne 1</th>
+            <th>Colonne 2</th>
+            <th>Colonne 3</th>
         </tr>
         <tr>
-            <td>Zone A</td>
-            <td rowspan="3">Du 21 octobre au 6 novembre 2023</td>
-            <td rowspan="3">Du 23 décembre 2023 au 8 janvier 2024</td>
-            <td>Du 17 février au 4 mars 2024</td>
-            <td>Du 13 au 29 avril 2024</td>
-            <td rowspan="3">Du 6 juillet au 2 septembre 2024</td>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
         </tr>
         <tr>
-            <td>Zone B</td>
-            <td>Du 24 février au 11 mars 2024</td>
-            <td>Du 20 avril au 6 mai 2024</td>
-        </tr>
-        <tr>
-            <td>Zone C</td>
-            <td>Du 10 au 26 février 2024</td>
-            <td>Du 6 au 22 avril 2024</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
         </tr>
     </table>
 
-    <h1>Exercice 2 : Langages de Script</h1>
-    <table class="langages">
-        <caption>Comparaison des langages de script côté serveur</caption>
+    <!-- Exercice 2 -->
+    <h2>Exercice 2 : Langages de Script Serveur</h2>
+    <table>
+        <caption>Tableau des langages de script côté serveur</caption>
         <tr>
             <th>Logo</th>
-            <th>Nom abrégé</th>
+            <th>Non abrégé</th>
             <th>Nom complet</th>
             <th>Année de sortie</th>
             <th>Site web de référence</th>
             <th>Exemple de code</th>
         </tr>
         <tr>
-            <td><a href="images/php.png" title="Logo PHP"><img src="images/php-small.png" alt="PHP"></a></td>
+            <td><a href="php-logo.png"><img src="php-logo.png" alt="PHP"></a></td>
             <td>PHP</td>
-            <td>PHP: Hypertext Preprocessor</td>
+            <td>Hypertext Preprocessor</td>
             <td>1995</td>
-            <td><a href="https://www.php.net" title="Site officiel PHP">php.net</a></td>
-            <td><code>echo "Hello World!";</code></td>
+            <td><a href="https://www.php.net/" target="_blank">php.net</a></td>
+            <td><code>&lt;?php echo "Hello World!"; ?&gt;</code></td>
         </tr>
-        <!-- Ajoutez d'autres langages de la même manière -->
+        <tr>
+            <td><a href="python-logo.png"><img src="python-logo.png" alt="Python"></a></td>
+            <td>Python</td>
+            <td>Python</td>
+            <td>1991</td>
+            <td><a href="https://www.python.org/" target="_blank">python.org</a></td>
+            <td><code>print("Hello World!")</code></td>
+        </tr>
     </table>
 
-    <h1>Exercice 3 : Calendrier Avril 2024</h1>
-    <table class="mois">
-        <caption>Avril 2024</caption>
+    <!-- Exercice 3 -->
+    <h2>Exercice 3 : Calendrier Avril 2024</h2>
+    <table>
         <tr>
-            <th>Lun</th>
-            <th>Mar</th>
-            <th>Mer</th>
-            <th>Jeu</th>
-            <th>Ven</th>
-            <th>Sam</th>
-            <th>Dim</th>
+            <th>Dim</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th>
         </tr>
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
+            <td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
         </tr>
-        <!-- Continuez pour les autres semaines -->
+        <tr>
+            <td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+        </tr>
+        <tr>
+            <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+        </tr>
+        <tr>
+            <td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>
+        </tr>
+        <tr>
+            <td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td>
+        </tr>
     </table>
-    <footer>
-        <a href="https://loietoui.github.io/htmltest/page_tp3.html">accueil</a>
-    </footer>
+
 </body>
 </html>
