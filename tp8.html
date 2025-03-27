@@ -112,17 +112,17 @@
                 return;
             }
 
-            const volume = (surface * (epaisseur / 100)).toFixed(2); // Volume en m³
-            const cimentTonnage = (volume * 0.35).toFixed(2); // Tonnage de ciment (350 kg/m³)
-            const camions = Math.ceil(volume / 9); // Arrondi au camion supérieur
+            const volume = (surface * (epaisseur / 100)).toFixed(2);
+            const cimentTonnage = (volume * 0.35).toFixed(2); //350 kg/m³
+            const camions = Math.ceil(volume / 9); 
 
-            const prixBeton = volume * 91; // Prix du béton
-            const prixTransport = camions * 140; // Prix du transport
+            const prixBeton = volume * 91; 
+            const prixTransport = camions * 140; 
             const sousTotal = prixBeton + prixTransport;
-            const tva = sousTotal * 0.2; // TVA 20%
+            const tva = sousTotal * 0.2; 
             const totalTTC = sousTotal + tva;
 
-            // Mise à jour du tableau
+
             const devisBody = document.getElementById('devisBody');
             devisBody.innerHTML = `
                 <tr>
@@ -139,7 +139,7 @@
                 </tr>
             `;
 
-            // Mise à jour des totaux
+
             document.getElementById('sousTotal').textContent = sousTotal.toFixed(2);
             document.getElementById('tva').textContent = tva.toFixed(2);
             document.getElementById('totalTTC').textContent = totalTTC.toFixed(2);
