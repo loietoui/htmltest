@@ -5,83 +5,140 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TP9 - Interactivité Web</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h2 { color: #4a90e2; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    section {
+      background: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #3498db;
+      border-bottom: 2px solid #ecf0f1;
+      padding-bottom: 5px;
+    }
+    mark {
+      background-color: #f1c40f;
+      cursor: pointer;
+      border-radius: 3px;
+      padding: 0 4px;
+    }
     .tooltip {
       position: absolute;
-      background: #f0f0f0;
+      background: #ffffff;
       border: 1px solid #ccc;
       padding: 10px;
       display: none;
       z-index: 10;
+      max-width: 200px;
+      border-radius: 6px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.15);
     }
-    mark { background-color: yellow; cursor: pointer; }
-
-    table, th, td {
-      border: 1px solid black;
+    input, select, button {
+      margin: 5px 5px 10px 0;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    table {
+      width: 100%;
       border-collapse: collapse;
-      padding: 5px;
+      margin-top: 10px;
     }
-
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #ecf0f1;
+    }
+    td, th {
+      padding: 10px;
+      text-align: center;
+    }
+    #compteRebours {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #e67e22;
+    }
     #calendar td {
-      width: 40px; height: 40px; text-align: center;
+      height: 40px;
     }
   </style>
 </head>
 <body>
 
-  <!-- EXO 1 -->
-  <h2>Exercice 1 - Définition au survol</h2>
-  <p>
-    Lorem ipsum dolor sit <mark data-word="JavaScript">JavaScript</mark> amet, 
-    consectetur <mark data-word="HTML">HTML</mark> adipiscing elit. 
-    Nullam <mark data-word="CSS">CSS</mark> nec tellus.
-  </p>
-  <div id="tooltip" class="tooltip"></div>
+  <h1>TP 9 - Rendre dynamiques ses pages web</h1>
 
-  <!-- EXO 2 -->
-  <h2>Exercice 2 - Formulaire de visite</h2>
-  <form id="formulaire">
-    Nom: <input type="text" id="nom" required>
-    Prénom: <input type="text" id="prenom" required>
-    Étude suivie:
-    <select id="etude">
-      <option value="Bac Pro">Bac Pro</option>
-      <option value="STI">STI</option>
-      <option value="STMG">STMG</option>
-      <option value="Général">Général</option>
-    </select>
-    <button type="submit">Valider</button>
-  </form>
-  <table id="visiteurs">
-    <tr><th>Nom</th><th>Prénom</th><th>Étude</th></tr>
-  </table>
+  <!-- EXERCICE 1 -->
+  <section>
+    <h2>Exercice 1 - Définitions interactives</h2>
+    <p>
+      Lorem ipsum dolor sit <mark data-word="JavaScript">JavaScript</mark> amet, 
+      consectetur <mark data-word="HTML">HTML</mark> adipiscing elit. 
+      Nullam <mark data-word="CSS">CSS</mark> nec tellus varius.
+    </p>
+    <div id="tooltip" class="tooltip"></div>
+  </section>
 
-  <!-- EXO 3 -->
-  <h2>Exercice 3 - Compte à rebours</h2>
-  <p id="compteRebours">Chargement du compte à rebours...</p>
+  <!-- EXERCICE 2 -->
+  <section>
+    <h2>Exercice 2 - Formulaire de visite</h2>
+    <form id="formulaire">
+      <input type="text" id="nom" placeholder="Nom" required>
+      <input type="text" id="prenom" placeholder="Prénom" required>
+      <select id="etude">
+        <option value="Bac Pro">Bac Pro</option>
+        <option value="STI">STI</option>
+        <option value="STMG">STMG</option>
+        <option value="Général">Général</option>
+      </select>
+      <button type="submit">Valider</button>
+    </form>
+    <table id="visiteurs">
+      <tr><th>Nom</th><th>Prénom</th><th>Étude</th></tr>
+    </table>
+  </section>
 
-  <!-- EXO 4 -->
-  <h2>Exercice 4 - Calendrier paramétrable</h2>
-  <button onclick="calendrier(6, 3, 2025)">Afficher mars 2025</button>
-  <div id="calendar"></div>
+  <!-- EXERCICE 3 -->
+  <section>
+    <h2>Exercice 3 - Compte à rebours vers un évènement</h2>
+    <p>L’évènement est la journée portes ouvertes du <strong>1er juin 2025</strong>.</p>
+    <p id="compteRebours">Chargement du compte à rebours...</p>
+  </section>
+
+  <!-- EXERCICE 4 -->
+  <section>
+    <h2>Exercice 4 - Calendrier paramétrable</h2>
+    <p>Appuie pour afficher le calendrier de mars 2025 :</p>
+    <button onclick="calendrier(6, 3, 2025)">Afficher</button>
+    <div id="calendar"></div>
+  </section>
 
   <script>
-    // EXO 1
+    // EXO 1 : info-bulles
     const definitions = {
-      JavaScript: "Langage de programmation côté client.",
-      HTML: "Langage de structuration d'une page web.",
-      CSS: "Langage de mise en forme des pages web."
+      JavaScript: "Langage de programmation utilisé pour rendre les pages web interactives.",
+      HTML: "Langage de balisage servant à structurer le contenu d'une page web.",
+      CSS: "Langage de style pour définir l'apparence visuelle des pages web."
     };
-
     const tooltip = document.getElementById("tooltip");
-
     document.querySelectorAll("mark").forEach(el => {
       el.addEventListener("mouseenter", (e) => {
         const mot = e.target.dataset.word;
         tooltip.innerHTML = `<strong>${mot}</strong><br>${definitions[mot]}`;
         tooltip.style.left = e.pageX + "px";
-        tooltip.style.top = e.pageY + "px";
+        tooltip.style.top = e.pageY + 20 + "px";
         tooltip.style.display = "block";
       });
       el.addEventListener("mouseleave", () => {
@@ -89,7 +146,7 @@
       });
     });
 
-    // EXO 2
+    // EXO 2 : formulaire
     document.getElementById("formulaire").addEventListener("submit", function(e) {
       e.preventDefault();
       const nom = document.getElementById("nom").value;
@@ -101,13 +158,13 @@
       this.reset();
     });
 
-    // EXO 3
+    // EXO 3 : compte à rebours
     const dateEvenement = new Date("2025-06-01T00:00:00");
     function updateCountdown() {
       const maintenant = new Date();
       const diff = dateEvenement - maintenant;
       if (diff <= 0) {
-        document.getElementById("compteRebours").textContent = "Événement arrivé !";
+        document.getElementById("compteRebours").textContent = "L'évènement a commencé !";
         return;
       }
       const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -115,12 +172,12 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const secondes = Math.floor((diff / 1000) % 60);
       document.getElementById("compteRebours").textContent =
-        `${jours}j ${heures}h ${minutes}m ${secondes}s avant l'évènement.`;
+        `Il reste ${jours}j ${heures}h ${minutes}m ${secondes}s avant la journée portes ouvertes !`;
       setTimeout(updateCountdown, 1000);
     }
     updateCountdown();
 
-    // EXO 4
+    // EXO 4 : calendrier
     function calendrier(premierJour, mois, annee) {
       const jours = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
       const nbJours = new Date(annee, mois, 0).getDate();
