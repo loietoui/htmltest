@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TP9 - Interactivité Web</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { color: #4a90e2; }
+    .tooltip {
+      position: absolute;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: none;
+      z-index: 10;
+    }
+    mark { background-color: yellow; cursor: pointer; }
+
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+
+    #calendar td {
+      width: 40px; height: 40px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EXO 1 -->
+  <h2>Exercice 1 - Définition au survol</h2>
+  <p>
+    Lorem ipsum dolor sit <mark data-word="JavaScript">JavaScript</mark> amet, 
+    consectetur <mark data-word="HTML">HTML</mark> adipiscing elit. 
+    Nullam <mark data-word="CSS">CSS</mark> nec tellus.
+  </p>
+  <div id="tooltip" class="tooltip"></div>
+
+  <!-- EXO 2 -->
+  <h2>Exercice 2 - Formulaire de visite</h2>
+  <form id="formulaire">
+    Nom: <input type="text" id="nom" required>
+    Prénom: <input type="text" id="prenom" required>
+    Étude suivie:
+    <select id="etude">
+      <option value="Bac Pro">Bac Pro</option>
+      <option value="STI">STI</option>
+      <option value="STMG">STMG</option>
+      <option value="Général">Général</option>
+    </select>
+    <button type="submit">Valider</button>
+  </form>
+  <table id="visiteurs">
+    <tr><th>Nom</th><th>Prénom</th><th>Étude</th></tr>
+  </table>
+
+  <!-- EXO 3 -->
+  <h2>Exercice 3 - Compte à rebours</h2>
+  <p id="compteRebours">Chargement du compte à rebours...</p>
+
+  <!-- EXO 4 -->
+  <h2>Exercice 4 - Calendrier paramétrable</h2>
+  <button onclick="calendrier(6, 3, 2025)">Afficher mars 2025</button>
+  <div id="calendar"></div>
+
+  <script>
+    // EXO 1
+    const definitions = {
+      JavaScript: "Langage de programmation côté client.",
+      HTML: "Langage de structuration d'une page web.",
+      CSS: "Langage de mise en forme des pages web."
+    };
+
+    const tooltip = document.getElementById("tooltip");
+
+    document.querySelectorAll("mark").forEach(el => {
+      el.addEventListener("mouseenter", (e) => {
+        const mot = e.target.dataset.word;
+        tooltip.innerHTML = `<strong>${mot}</strong><br>${definitions[mot]}`;
+        tooltip.style.left = e.pageX + "px";
+        tooltip.style.top = e.pageY + "px";
+        tooltip.style.display = "block";
+      });
+      el.addEventListener("mouseleave", () => {
+        tooltip.style.display = "none";
+      });
+    });
+
+    // EXO 2
+    document.getElementById("formulaire").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nom = document.getElementById("nom").value;
+      const prenom = document.getElementById("prenom").value;
+      const etude = document.getElementById("etude").value;
+      const ligne = document.createElement("tr");
+      ligne.innerHTML = `<td>${nom}</td><td>${prenom}</td><td>${etude}</td>`;
+      document.getElementById("visiteurs").appendChild(ligne);
+      this.reset();
+    });
+
+    // EXO 3
+    const dateEvenement = new Date("2025-06-01T00:00:00");
+    function updateCountdown() {
+      const maintenant = new Date();
+      const diff = dateEvenement - maintenant;
+      if (diff <= 0) {
+        document.getElementById("compteRebours").textContent = "Événement arrivé !";
+        return;
+      }
+      const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const heures = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const secondes = Math.floor((diff / 1000) % 60);
+      document.getElementById("compteRebours").textContent =
+        `${jours}j ${heures}h ${minutes}m ${secondes}s avant l'évènement.`;
+      setTimeout(updateCountdown, 1000);
+    }
+    updateCountdown();
+
+    // EXO 4
+    function calendrier(premierJour, mois, annee) {
+      const jours = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+      const nbJours = new Date(annee, mois, 0).getDate();
+      let html = `<table><tr>${jours.map(j => `<th>${j}</th>`).join("")}</tr><tr>`;
+      let day = 1;
+      let currentDay = 1;
+
+      for (let i = 1; i < premierJour; i++) {
+        html += "<td></td>";
+        currentDay++;
+      }
+
+      for (let j = 1; j <= nbJours; j++) {
+        html += `<td>${j}</td>`;
+        if (currentDay % 7 === 0) html += "</tr><tr>";
+        currentDay++;
+      }
+
+      html += "</tr></table>";
+      document.getElementById("calendar").innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
